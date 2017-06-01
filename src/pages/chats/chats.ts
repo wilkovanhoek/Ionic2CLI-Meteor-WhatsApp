@@ -36,7 +36,7 @@ export class ChatsPage implements OnInit {
     });
   }
 
-  findChats(): Observable<Chat[]> {
+  findChats() {
     // Find chats and transform them
     return Chats.find().map(chats => {
       chats.forEach(chat => {

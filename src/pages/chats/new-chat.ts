@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Chats, Users, Pictures } from 'api/collections';
-import { User } from 'api/models';
 import { AlertController, ViewController } from 'ionic-angular';
 import { MeteorObservable } from 'meteor-rxjs';
 import { _ } from 'meteor/underscore';
@@ -13,7 +12,7 @@ import { Observable, Subscription, BehaviorSubject } from 'rxjs';
 export class NewChatComponent implements OnInit {
   searchPattern: BehaviorSubject<any>;
   senderId: string;
-  users: Observable<User[]>;
+  users;
   usersSubscription: Subscription;
 
   constructor(
@@ -68,7 +67,7 @@ export class NewChatComponent implements OnInit {
     });
   }
 
-  findUsers(): Observable<User[]> {
+  findUsers() {
     // Find all belonging chats
     return Chats.find({
       memberIds: this.senderId
